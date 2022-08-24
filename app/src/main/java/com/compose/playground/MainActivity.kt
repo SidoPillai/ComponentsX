@@ -44,7 +44,6 @@ class MainActivity : ComponentActivity() {
                             .wrapContentHeight()
                             .padding(start = 16.dp),
                     ) {
-
                         item {
                             repeat(4) {
                                 ShortStoriesCardView(
