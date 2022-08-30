@@ -1,13 +1,12 @@
 package com.compose.playground
 
-import android.graphics.Color.blue
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
-import androidx.compose.foundation.lazy.LazyRow
+import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.CornerSize
 import androidx.compose.foundation.shape.RoundedCornerShape
@@ -19,18 +18,21 @@ import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
-import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.SpanStyle
 import androidx.compose.ui.text.buildAnnotatedString
 import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.text.withStyle
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.zIndex
 import com.compose.components.CrossSlide
 import com.compose.components.ProgressButton
+import com.compose.modifiers.NeuInsets
 import com.compose.modifiers.dashedBorder
+import com.compose.modifiers.neumorphic
+import com.compose.modifiers.shapes.Punched
 import com.compose.playground.ui.theme.ComposePlaygroundTheme
 
 class MainActivity : ComponentActivity() {
@@ -45,26 +47,26 @@ class MainActivity : ComponentActivity() {
                 ) {
                     var currentPage by remember { mutableStateOf("A") }
 
-                    LazyRow(
+                    LazyColumn(
                         modifier = Modifier
                             .fillMaxWidth()
                             .wrapContentHeight()
                             .padding(start = 16.dp),
+                        verticalArrangement = Arrangement.spacedBy(30.dp),
+                        horizontalAlignment = Alignment.CenterHorizontally
                     ) {
                         item {
-                            repeat(4) {
-                                ShortStoriesCardView(
-                                    modifier = Modifier
-                                        .width(160.dp)
-                                        .height(240.dp)
-                                        .dashedBorder(
-                                            width = 2.dp,
-                                            color = Color.Cyan,
-                                            shape = MaterialTheme.shapes.medium, on = 4.dp, off = 4.dp
-                                        )
-                                )
-                                Spacer(modifier = Modifier.width(8.dp))
-                            }
+                            ShortStoriesCardView(
+                                modifier = Modifier
+                                    .width(160.dp)
+                                    .height(240.dp)
+                                    .dashedBorder(
+                                        width = 2.dp,
+                                        color = Color.Cyan,
+                                        shape = MaterialTheme.shapes.medium, on = 4.dp, off = 4.dp
+                                    )
+                            )
+                            Spacer(modifier = Modifier.width(8.dp))
                         }
 
                         item {
@@ -78,10 +80,14 @@ class MainActivity : ComponentActivity() {
                                     }
                                 },
                                 backgroundColor = MaterialTheme.colorScheme.primary,
-                                modifier = Modifier.width(200.dp).height(56.dp)
+                                modifier = Modifier
+                                    .width(200.dp)
+                                    .height(56.dp)
                             ) {
                                 Box(
-                                    modifier = Modifier.width(200.dp).height(56.dp),
+                                    modifier = Modifier
+                                        .width(200.dp)
+                                        .height(56.dp),
                                     contentAlignment = Alignment.Center
                                 ) {
                                     Text(
@@ -98,6 +104,48 @@ class MainActivity : ComponentActivity() {
                                     "A" -> Text("Page A")
                                     "B" -> Text("Page B")
                                 }
+                            }
+                        }
+
+                        item {
+                            Button(
+                                onClick = { /*TODO*/ },
+                                modifier = Modifier
+                                    .padding(12.dp)
+                                    .neumorphic(
+                                        lightShadowColor = Color.White,
+                                        darkShadowColor = Color.Gray.copy(alpha = 0.3f),
+                                        elevation = 4.dp,
+                                        strokeWidth = 6.dp,
+                                        neuInsets = NeuInsets(1.dp, 1.dp)
+                                    ),
+                            ) {
+                                Text(
+                                    text = "Button",
+                                    color = MaterialTheme.colorScheme.onPrimary
+                                )
+                            }
+                        }
+
+                        item {
+                            Card(
+                                colors = CardDefaults.cardColors(
+                                    containerColor =  MaterialTheme.colorScheme.surfaceVariant,
+                                ),
+                                shape = RoundedCornerShape(12.dp),
+                                modifier = Modifier
+                                    .padding(16.dp)
+                                    .size(250.dp, 60.dp)
+                                    .neumorphic(
+                                        neuShape = Punched.Rounded(radius = 8.dp)
+                                    )
+                            ) {
+                                Text(
+                                    modifier = Modifier.fillMaxSize(),
+                                    text = "Neomorphic Button",
+                                    color = MaterialTheme.colorScheme.onSurfaceVariant,
+                                    textAlign = TextAlign.Center
+                                )
                             }
                         }
                     }
@@ -226,10 +274,14 @@ fun ProgressButton_Preview() {
         progress = 0.3f,
         onClick = {},
         backgroundColor = MaterialTheme.colorScheme.primary,
-        modifier = Modifier.width(200.dp).height(56.dp)
+        modifier = Modifier
+            .width(200.dp)
+            .height(56.dp)
     ) {
         Box(
-            modifier = Modifier.width(200.dp).height(56.dp),
+            modifier = Modifier
+                .width(200.dp)
+                .height(56.dp),
             contentAlignment = Alignment.Center
         ) {
             Text(
