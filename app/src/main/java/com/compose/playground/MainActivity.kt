@@ -11,7 +11,7 @@ import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.CornerSize
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.*
-import androidx.compose.runtime.Composable
+import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
@@ -26,6 +26,7 @@ import androidx.compose.ui.text.withStyle
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.zIndex
+import com.compose.components.CrossSlide
 import com.compose.components.ProgressButton
 import com.compose.playground.ui.theme.ComposePlaygroundTheme
 
@@ -39,6 +40,8 @@ class MainActivity : ComponentActivity() {
                     modifier = Modifier.fillMaxSize(),
                     color = MaterialTheme.colorScheme.background
                 ) {
+                    var currentPage by remember { mutableStateOf("A") }
+
                     LazyRow(
                         modifier = Modifier
                             .fillMaxWidth()
@@ -59,7 +62,13 @@ class MainActivity : ComponentActivity() {
                         item {
                             ProgressButton(
                                 progress = 0.3f,
-                                onClick = {},
+                                onClick = {
+                                    currentPage = if (currentPage == "A") {
+                                        "B"
+                                    } else {
+                                        "A"
+                                    }
+                                },
                                 backgroundColor = MaterialTheme.colorScheme.primary,
                                 modifier = Modifier.width(200.dp).height(56.dp)
                             ) {
@@ -71,6 +80,15 @@ class MainActivity : ComponentActivity() {
                                         text = "Button",
                                         color = MaterialTheme.colorScheme.onPrimary
                                     )
+                                }
+                            }
+                        }
+
+                        item {
+                            CrossSlide(targetState = currentPage) { screen ->
+                                when (screen) {
+                                    "A" -> Text("Page A")
+                                    "B" -> Text("Page B")
                                 }
                             }
                         }
