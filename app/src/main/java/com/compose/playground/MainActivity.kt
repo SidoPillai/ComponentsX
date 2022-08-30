@@ -1,5 +1,6 @@
 package com.compose.playground
 
+import android.graphics.Color.blue
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
@@ -18,6 +19,7 @@ import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
+import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.SpanStyle
 import androidx.compose.ui.text.buildAnnotatedString
@@ -28,6 +30,7 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.zIndex
 import com.compose.components.CrossSlide
 import com.compose.components.ProgressButton
+import com.compose.modifiers.dashedBorder
 import com.compose.playground.ui.theme.ComposePlaygroundTheme
 
 class MainActivity : ComponentActivity() {
@@ -54,6 +57,11 @@ class MainActivity : ComponentActivity() {
                                     modifier = Modifier
                                         .width(160.dp)
                                         .height(240.dp)
+                                        .dashedBorder(
+                                            width = 2.dp,
+                                            color = Color.Cyan,
+                                            shape = MaterialTheme.shapes.medium, on = 4.dp, off = 4.dp
+                                        )
                                 )
                                 Spacer(modifier = Modifier.width(8.dp))
                             }
