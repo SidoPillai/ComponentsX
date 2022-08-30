@@ -26,6 +26,7 @@ import androidx.compose.ui.text.withStyle
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.zIndex
+import com.compose.components.ProgressButton
 import com.compose.playground.ui.theme.ComposePlaygroundTheme
 
 class MainActivity : ComponentActivity() {
@@ -52,6 +53,25 @@ class MainActivity : ComponentActivity() {
                                         .height(240.dp)
                                 )
                                 Spacer(modifier = Modifier.width(8.dp))
+                            }
+                        }
+
+                        item {
+                            ProgressButton(
+                                progress = 0.3f,
+                                onClick = {},
+                                backgroundColor = MaterialTheme.colorScheme.primary,
+                                modifier = Modifier.width(200.dp).height(56.dp)
+                            ) {
+                                Box(
+                                    modifier = Modifier.width(200.dp).height(56.dp),
+                                    contentAlignment = Alignment.Center
+                                ) {
+                                    Text(
+                                        text = "Button",
+                                        color = MaterialTheme.colorScheme.onPrimary
+                                    )
+                                }
                             }
                         }
                     }
@@ -171,4 +191,25 @@ fun ShortStoriesCardView_Preview() {
             .width(160.dp)
             .height(240.dp)
     )
+}
+
+@Preview
+@Composable
+fun ProgressButton_Preview() {
+    ProgressButton(
+        progress = 0.3f,
+        onClick = {},
+        backgroundColor = MaterialTheme.colorScheme.primary,
+        modifier = Modifier.width(200.dp).height(56.dp)
+    ) {
+        Box(
+            modifier = Modifier.width(200.dp).height(56.dp),
+            contentAlignment = Alignment.Center
+        ) {
+            Text(
+                text = "Button",
+                color = Color.White
+            )
+        }
+    }
 }
