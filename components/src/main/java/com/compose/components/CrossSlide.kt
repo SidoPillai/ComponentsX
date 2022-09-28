@@ -33,7 +33,7 @@ fun <T> CrossSlide(
     val transitionState = remember { MutableTransitionState(targetState) }
     val targetChanged = (targetState != transitionState.targetState)
     transitionState.targetState = targetState
-    val transition: Transition<T> = updateTransition(transitionState)
+    val transition: Transition<T> = updateTransition(transitionState, label = "")
 
     if (targetChanged || items.isEmpty()) {
         // Only manipulate the list when the state is changed, or in the first run.

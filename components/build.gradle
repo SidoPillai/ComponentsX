@@ -33,6 +33,8 @@ android {
     composeOptions {
         kotlinCompilerExtensionVersion compose_compiler_version
     }
+    namespace 'com.compose.components'
+    buildToolsVersion '33.0.0'
 }
 
 dependencies {
