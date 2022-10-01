@@ -34,7 +34,8 @@ val routes = mutableListOf(
     "Progress Button",
     "CrossSlide",
     "Card View",
-    "Timeline Intro"
+    "Timeline Intro",
+    "Share Card"
 )
 
 @Composable
