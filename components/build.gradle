@@ -54,7 +54,4 @@ dependencies {
 
     // Composable screenshot
     implementation 'com.github.SmartToolFactory:Compose-Screenshot:1.0.0'
-
-    // Accompanist
-    implementation "com.google.accompanist:accompanist-drawablepainter:0.26.4-beta" // drawablePainter
 }

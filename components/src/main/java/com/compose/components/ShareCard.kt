@@ -23,7 +23,6 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.layout.Layout
 import androidx.compose.ui.platform.LocalConfiguration
-import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.style.TextAlign
@@ -130,8 +129,7 @@ private object SampleData {
  */
 @Composable
 @Stable
-fun ShareScreenScaffold(
-) {
+fun ShareScreenScaffold() {
     val currentData = SampleData.getDataAtIndex(Random.nextInt(from = 0, until = 9))
     val screenshotState = rememberScreenshotState()
     val bottomSheetScaffoldState = rememberBottomSheetScaffoldState(bottomSheetState = BottomSheetState(
@@ -222,8 +220,9 @@ private fun ShareScreen(
                 border = IconButtonDefaults.outlinedIconButtonBorder(enabled = true)
             ) {
                 Icon(
-                    painter = painterResource(id = R.drawable.ic_baseline_more_horiz_24),
-                    contentDescription = "More Icon"
+                    painter = painterResource(id = com.google.android.material.R.drawable.abc_ic_menu_overflow_material),
+                    contentDescription = "More Icon",
+                    tint = Color.Black
                 )
             }
 
@@ -243,8 +242,9 @@ private fun ShareScreen(
                 border = IconButtonDefaults.outlinedIconButtonBorder(enabled = true)
             ) {
                 Icon(
-                    painter = painterResource(id = R.drawable.ic_baseline_share_24),
-                    contentDescription = "Share button"
+                    painter = painterResource(id = androidx.appcompat.R.drawable.abc_ic_menu_share_mtrl_alpha),
+                    contentDescription = "Share button",
+                    tint = Color.Black
                 )
             }
         }
@@ -260,7 +260,6 @@ private fun ShareScreen(
             ShareCardCustom(
                 header = { CardHeader(currentData.author, currentData.imageUrl, Color.White, MaterialTheme.typography.labelMedium) },
                 content = { CardContent(currentData.body, Color.White, MaterialTheme.typography.bodyMedium) },
-//                content = { AnimatedGif() },
                 media = { CardMedia(currentData.imageUrl) },
                 modifier = Modifier
                     .padding(1.dp),
@@ -327,7 +326,7 @@ private fun CardHeader(
         Spacer(modifier = Modifier.weight(1f))
 
         Icon(
-            painter = painterResource(R.drawable.ic_baseline_share_24),
+            painter = painterResource(androidx.appcompat.R.drawable.abc_ic_menu_share_mtrl_alpha),
             contentDescription = null,
             tint = Color.White,
             modifier = Modifier
@@ -487,19 +486,3 @@ private fun ShareCardLayout(
         }
     }
 }
-
-// Create a .gif file
-//@Composable
-//private fun AnimatedGif(){
-//    val animation = AnimationDrawable()
-//    animation.addFrame(ContextCompat.getDrawable(LocalContext.current, R.drawable.ic__627640231desert_landscape_nature_clip_art)!!, 1000)
-//    animation.addFrame(ContextCompat.getDrawable(LocalContext.current, R.drawable.ic__642775428tree_silhouette_grey_color)!!, 2000)
-//    animation.addFrame(ContextCompat.getDrawable(LocalContext.current, R.drawable.ic__642774755green_grass_plant_clip_art)!!, 2000)
-//    animation.isOneShot = false
-//    animation.start()
-//
-//    Image(
-//        painter = rememberDrawablePainter(animation),
-//        contentDescription = null,
-//    )
-//}

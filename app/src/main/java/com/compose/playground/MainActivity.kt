@@ -70,7 +70,7 @@ fun Navigation() {
         composable("Timeline Intro") {
             TimelineIntro(navController = navController)
         }
-        composable("Share Card"){
+        composable("Share Card") {
             ShareScreenScaffold()
         }
     }
