@@ -57,7 +57,6 @@ fun Card(
         )
     }
 }
-
 @Composable
 fun ShortStoriesCardView(
     modifier: Modifier,
@@ -74,7 +73,6 @@ fun ShortStoriesCardView(
                 painter = painterResource(id = R.drawable.thumbnail_stock),
                 contentScale = ContentScale.Crop
             )
-
             Box(
                 modifier = Modifier
                     .fillMaxSize()
@@ -89,7 +87,6 @@ fun ShortStoriesCardView(
                         )
                     )
             )
-
             Box(
                 modifier = Modifier
                     .fillMaxSize()
@@ -121,7 +118,6 @@ fun ShortStoriesCardView(
                     )
                 }
             }
-
             Box(
                 modifier = Modifier
                     .fillMaxSize()
@@ -135,9 +131,6 @@ fun ShortStoriesCardView(
                         )
                     )
             )
-
-
-
             Box(
                 modifier = Modifier
                     .fillMaxSize()
