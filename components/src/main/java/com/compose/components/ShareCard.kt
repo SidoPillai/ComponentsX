@@ -3,7 +3,6 @@ package com.compose.components
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
-import androidx.compose.foundation.border
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
@@ -35,7 +34,6 @@ import com.smarttoolfactory.screenshot.ScreenshotState
 import com.smarttoolfactory.screenshot.rememberScreenshotState
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.launch
-import kotlin.random.Random
 
 /**
  * Data class defining the structure of Sample data objects
@@ -299,22 +297,19 @@ private fun CardHeader(
     Row(
         modifier = Modifier
             .height(50.dp)
-            .fillMaxWidth()
+            .fillMaxWidth(),
+        horizontalArrangement = Arrangement.spacedBy(8.dp)
     ) {
+        
+        Spacer(modifier = Modifier.width(8.dp))
         GlideImage(
             model = titleImageUri,
             contentDescription = null,
             contentScale = ContentScale.Crop,
             modifier = Modifier
-                .padding(10.dp)
-                .align(Alignment.CenterVertically)
-                .size(40.dp)
+                .size(32.dp)
                 .clip(CircleShape)
-                .border(
-                    1.dp,
-                    Color.Black,
-                    CircleShape
-                )
+                .align(Alignment.CenterVertically)
         )
 
         Spacer(modifier = Modifier.width(2.dp))
