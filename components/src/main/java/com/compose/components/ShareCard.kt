@@ -130,7 +130,7 @@ private object SampleData {
 @Composable
 @Stable
 fun ShareScreenScaffold() {
-    val currentData = SampleData.getDataAtIndex(Random.nextInt(from = 0, until = 9))
+    val currentData = SampleData.getDataAtIndex(3)
     val screenshotState = rememberScreenshotState()
     val bottomSheetScaffoldState = rememberBottomSheetScaffoldState(bottomSheetState = BottomSheetState(
         BottomSheetValue.Collapsed))
@@ -201,7 +201,7 @@ private fun ShareScreen(
     scope: CoroutineScope
 ) {
     Column(
-        modifier = Modifier.background(Color.White)
+        modifier = Modifier.background(MaterialTheme.colorScheme.background)
     ){
         Row(
             modifier = Modifier
@@ -215,14 +215,16 @@ private fun ShareScreen(
 
             OutlinedIconButton(
                 onClick = { },
-                colors = IconButtonDefaults.iconButtonColors(),
+                colors = IconButtonDefaults.iconButtonColors(
+                    contentColor = MaterialTheme.colorScheme.onPrimary,
+                    containerColor = MaterialTheme.colorScheme.onPrimaryContainer
+                ),
                 enabled = true,
                 border = IconButtonDefaults.outlinedIconButtonBorder(enabled = true)
             ) {
                 Icon(
                     painter = painterResource(id = com.google.android.material.R.drawable.abc_ic_menu_overflow_material),
                     contentDescription = "More Icon",
-                    tint = Color.Black
                 )
             }
 
@@ -237,14 +239,16 @@ private fun ShareScreen(
                         }
                     }
                 },
-                colors = IconButtonDefaults.iconButtonColors(),
+                colors = IconButtonDefaults.iconButtonColors(
+                    contentColor = MaterialTheme.colorScheme.onPrimary,
+                    containerColor = MaterialTheme.colorScheme.onPrimaryContainer
+                ),
                 enabled = true,
                 border = IconButtonDefaults.outlinedIconButtonBorder(enabled = true)
             ) {
                 Icon(
                     painter = painterResource(id = androidx.appcompat.R.drawable.abc_ic_menu_share_mtrl_alpha),
                     contentDescription = "Share button",
-                    tint = Color.Black
                 )
             }
         }
@@ -253,18 +257,18 @@ private fun ShareScreen(
             screenshotState = screenshotState,
             modifier = Modifier
                 .clip(RoundedCornerShape(10.dp))
-                .widthIn(100.dp, 320.dp)
-                .heightIn(100.dp, LocalConfiguration.current.screenHeightDp.dp - 100.dp)
+                .widthIn(100.dp, LocalConfiguration.current.screenWidthDp.dp - 100.dp)
+                .heightIn(100.dp, LocalConfiguration.current.screenHeightDp.dp - 150.dp)
                 .align(Alignment.CenterHorizontally)
         ){
-            ShareCardCustom(
-                header = { CardHeader(currentData.author, currentData.imageUrl, Color.White, MaterialTheme.typography.labelMedium) },
-                content = { CardContent(currentData.body, Color.White, MaterialTheme.typography.bodyMedium) },
+            ShareCard(
+                header = { CardHeader(currentData.author, currentData.imageUrl, MaterialTheme.colorScheme.onSurface, MaterialTheme.typography.labelMedium) },
+                content = { CardContent(currentData.body, MaterialTheme.colorScheme.onSurface, MaterialTheme.typography.bodyMedium) },
                 media = { CardMedia(currentData.imageUrl) },
                 modifier = Modifier
                     .padding(1.dp),
                 cardColors = CardDefaults.cardColors(
-                    containerColor = Color.Black
+                    containerColor = MaterialTheme.colorScheme.surface
                 ),
                 cardElevation = CardDefaults.cardElevation(
                     defaultElevation = 4.dp,
@@ -328,7 +332,7 @@ private fun CardHeader(
         Icon(
             painter = painterResource(androidx.appcompat.R.drawable.abc_ic_menu_share_mtrl_alpha),
             contentDescription = null,
-            tint = Color.White,
+            tint = MaterialTheme.colorScheme.onSurface,
             modifier = Modifier
                 .padding(10.dp)
                 .align(Alignment.CenterVertically)
@@ -400,20 +404,20 @@ private fun CardMedia(
  */
 @Composable
 @Stable
-internal fun ShareCardDefault(
+internal fun ShareCard(
     title: String,
     titleImageUri: String,
     description: String,
     mediaUri: String
 ){
-    ShareCardCustom(
+    ShareCard(
         header = { CardHeader(title, titleImageUri, Color.White, MaterialTheme.typography.labelMedium) },
         content = { CardContent(description, Color.White, MaterialTheme.typography.bodyMedium) },
         media = { CardMedia(mediaUri) },
         modifier = Modifier
             .padding(1.dp),
         cardColors = CardDefaults.cardColors(
-            containerColor = Color.Black
+            containerColor = MaterialTheme.colorScheme.primaryContainer
         ),
         cardElevation = CardDefaults.cardElevation(
             defaultElevation = 4.dp,
@@ -433,7 +437,7 @@ internal fun ShareCardDefault(
  */
 @Composable
 @Stable
-internal fun ShareCardCustom(
+internal fun ShareCard(
     modifier: Modifier = Modifier,
     header: @Composable () -> Unit = {},
     content: @Composable () -> Unit,
