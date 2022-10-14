@@ -18,13 +18,11 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
-
 @Composable
 fun CrossSlide(
     navController: NavController
 ) {
     var currentPage by remember { mutableStateOf("A") }
-
     LazyColumn(
         Modifier
             .fillMaxSize()

@@ -46,11 +46,9 @@ fun HorizontalPager(
         Color.Cyan,
         Color.Magenta
     )
-
     val configuration = LocalConfiguration.current
     val screenWidth = configuration.screenWidthDp
     val pagerState = rememberPagerState()
-
     Column(
         Modifier
             .fillMaxSize()
