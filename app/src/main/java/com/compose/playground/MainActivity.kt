@@ -15,12 +15,8 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import com.compose.components.ProgressButton
-import com.compose.playground.pages.CrossSlide
-import com.compose.playground.pages.Home
-import com.compose.playground.pages.HorizontalPager
-import com.compose.playground.pages.NeomorphicButton
-import com.compose.playground.pages.TimelineIntro
-import com.compose.playground.pages.VerticalPager
+import com.compose.components.ShareScreenScaffold
+import com.compose.playground.pages.*
 import com.compose.playground.ui.theme.ComposePlaygroundTheme
 
 class MainActivity : ComponentActivity() {
@@ -73,6 +69,9 @@ fun Navigation() {
         }
         composable("Timeline Intro") {
             TimelineIntro(navController = navController)
+        }
+        composable("Share Card") {
+            ShareScreenScaffold()
         }
     }
 }
