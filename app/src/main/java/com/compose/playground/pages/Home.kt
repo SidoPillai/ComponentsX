@@ -35,7 +35,9 @@ val routes = mutableListOf(
     "CrossSlide",
     "Card View",
     "Timeline Intro",
-    "Share Card"
+    "Share Card",
+    "Image Cropper",
+    "Blend Modes"
 )
 
 @Composable
