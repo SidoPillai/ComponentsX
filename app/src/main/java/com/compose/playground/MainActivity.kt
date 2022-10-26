@@ -14,6 +14,8 @@ import androidx.compose.ui.unit.dp
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
+import com.compose.components.BlendModesDemo
+import com.compose.components.ImageCropDemo
 import com.compose.components.ProgressButton
 import com.compose.components.ShareScreenScaffold
 import com.compose.playground.pages.*
@@ -72,6 +74,12 @@ fun Navigation() {
         }
         composable("Share Card") {
             ShareScreenScaffold()
+        }
+        composable("Image Cropper") {
+            ImageCropDemo()
+        }
+        composable("Blend Modes") {
+            BlendModesDemo()
         }
     }
 }
